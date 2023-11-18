@@ -13,9 +13,9 @@ document.getElementById("start-tutor").addEventListener("click", function () {
 document
   .getElementById("tutorial-modal")
   .addEventListener("click", function (event) {
-    if (event.target === this) {
-      this.style.display = "none";
-    }
+    if (event.target === this || event.target.closest("#tutorial-modal")) {
+    this.style.display = "none";
+  }
   });
 
 // Set event listener for button in tutorial
