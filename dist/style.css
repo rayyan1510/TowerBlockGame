@@ -132,7 +132,7 @@ html, body {
 #container #instructions {
   position: absolute;
   width: 100%;
-  top: 22vh;
+  top: 24vh;
   left: 0;
   text-align: center;
   transition: opacity 0.5s ease, transform 0.5s ease;
