@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Block</title>
+  <link rel="stylesheet" href="./style.css" />
+
+  <style>
+    /* Gaya untuk tombol "OK" */
+
+  </style>
+
+</head>
+
+<body>
+  <!-- partial:index.partial.html -->
+  <meta name="viewport" content="width=device-width,user-scalable=no" />
+
+  <!-- <button id="tes" style="margin-bottom: 100px">Tekan Saya</button> -->
+  <div id="tutorial-modal">
+    <div id="content">
+      <h1>Tower Block</h1>
+      <h2>Cara Bermain</h2>
+      <p>Untuk memulai permainan, tekan tombol pada Space Keyboard.</p>
+      <p>Tujuan permainan adalah menumpuk blok pada blok sebelumnya.</p>
+      <p>Perhatikan lebar blok untuk menumpuknya dengan sempurna.</p>
+      <p>Jika Anda salah menumpuk atau melewati blok, permainan akan berakhir.</p>
+    </div>
+    <button id="tutorial-button">Mulai</button>
+  </div>
+
+
+  <div id="container">
+    <div id="game"></div>
+    <div id="score">0</div>
+    <div id="instructions">Klik (atau tekan tombol spasi) untuk menempatkan blok.</div>
+    <div class="game-over">
+      <h2>Game Over</h2>
+      <p>Kamu telah melakukan dengan baik, kamu yang terbaik.</p>
+      <p class="informasi">Klik atau tombol spasi untuk memulai lagi.</p>
+    </div>
+    <div class="game-ready">
+      <div id="start-button">Mulai</div>
+      <div id="start-tutor">Tutorial</div>
+      <div></div>
+      <div id="high-score-container">
+        <p>High Score <span id="high-score">0</span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- partial -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r83/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="./script.js"></script>
+</body>
+
+</html>
