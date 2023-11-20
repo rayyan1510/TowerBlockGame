@@ -35,6 +35,10 @@ document
     document.getElementById("tutorial-modal").style.display = "none";
   });
 
+  document.getElementById("reset-high-score").addEventListener("click", function () {
+    game.resetHighScore();
+  });
+
 function showGameOver() {
   document.getElementById("container").classList.add("ended");
 }
@@ -293,6 +297,7 @@ class Game {
     this.blocks = [];
     this.state = this.STATES.LOADING;
     this.stage = new Stage();
+    this.lives = 3;
     this.mainContainer = document.getElementById("container");
     this.scoreContainer = document.getElementById("score");
     this.startButton = document.getElementById("start-button");
@@ -313,16 +318,16 @@ class Game {
     this.addBlock();
     this.tick();
     this.updateState(this.STATES.READY);
-    document.addEventListener("keydown", (e) => {
-      if (e.keyCode == 32) this.onAction();
-    });
+    // document.addEventListener("keydown", (e) => {
+    //   if (e.keyCode == 32) this.onAction();
+    // });
     document.addEventListener("click", (e) => {
       this.onAction();
     });
     document.addEventListener("touchstart", (e) => {
       e.preventDefault();
       // this.onAction();
-      // ☝️ this triggers after click on android so you
+      // ☝ this triggers after click on android so you
       // insta-lose, will figure it out later.
     });
 
@@ -377,6 +382,13 @@ class Game {
       this.addBlock();
     }
   }
+
+  resetHighScore() {
+    this.highScore = 0; // Atur high score ke 0
+    this.saveHighScore(); // Simpan high score
+    this.updateHighScore(); // Perbarui tampilan high score
+  }
+
   restartGame() {
     this.updateState(this.STATES.RESETTING);
     let oldBlocks = this.placedBlocks.children;
@@ -469,9 +481,9 @@ class Game {
   }
   endGame() {
     this.updateState(this.STATES.ENDED);
-    if (this.highScore === undefined || this.blocks.length - 1 > this.highScore) {
+    if (this.highScore === undefined || this.blocks.length - 2 > this.highScore) {
       // Jika pemain mendapatkan skor tertinggi baru
-      this.highScore = this.blocks.length - 1;
+      this.highScore = this.blocks.length - 2;
       this.updateHighScore();
       this.saveHighScore(); // Simpan skor tertinggi
     }
@@ -537,4 +549,4 @@ class Game {
       backgroundThresholds[closestThreshold].fontColor;
   }
 }
-let game = new Game();
+let game = new Game();

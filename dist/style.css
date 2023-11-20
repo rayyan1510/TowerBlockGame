@@ -1,13 +1,15 @@
-@import url("https://fonts.googleapis.com/css?family=Comfortaa");
+@import url('https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+
 html, body {
   margin: 0;
   overflow: hidden;
   height: 100%;
   width: 100%;
   position: relative;
-  font-family: "Comfortaa", cursive;
+    font-family: 'Lora', serif;
 }
 #tutorial-modal {
+  background-color: #f1e1ffb8;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -15,9 +17,11 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
 #tutorial-modal #content {
-  background-color: #f1e1ffb8;
+  
   position: absolute;
   top: 0;
   left: 0;
@@ -40,6 +44,7 @@ html, body {
   font-size: 18px;
   margin: 0 0 10px;
 }
+
 #tutorial-modal #tutorial-button {
   transition: opacity 0.5s ease, transform 0.5s ease;
   transform: translatey(-50px);
@@ -156,4 +161,13 @@ html, body {
 }
 #container.ended .game-over p {
   transition-delay: 0.3s;
+}
+
+#reset-high-score{
+  border: 3px solid #333344;
+  padding: 10px 20px;
+  background-color: transparent;
+  color: #333344;
+  font-size: 10px;
+  font-weight: bold;
 }
