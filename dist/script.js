@@ -14,8 +14,8 @@ document
   .getElementById("tutorial-modal")
   .addEventListener("click", function (event) {
     if (event.target === this || event.target.closest("#tutorial-modal")) {
-    this.style.display = "none";
-  }
+      this.style.display = "none";
+    }
   });
 
 // Set event listener for button in tutorial
@@ -35,7 +35,9 @@ document
     document.getElementById("tutorial-modal").style.display = "none";
   });
 
-  document.getElementById("reset-high-score").addEventListener("click", function () {
+document
+  .getElementById("reset-high-score")
+  .addEventListener("click", function () {
     game.resetHighScore();
   });
 
@@ -305,10 +307,11 @@ class Game {
     this.instructions = document.getElementById("instructions");
     this.modal = document.getElementById("tutorial-modal");
     this.tutorial = document.getElementById("tutorial");
-    this.scoreText = document.getElementById('high-score-container'); 
-    this.highScoreContainer = document.getElementById('high-score'); 
-    this.loadHighScore(); 
-    this.scoreContainer.innerHTML = '0';
+    this.scoreText = document.getElementById("high-score-container");
+    this.highScoreContainer = document.getElementById("high-score");
+    this.resetScoreButton = document.getElementById("reset-high-score");
+    this.loadHighScore();
+    this.scoreContainer.innerHTML = "0";
     this.newBlocks = new THREE.Group();
     this.placedBlocks = new THREE.Group();
     this.choppedBlocks = new THREE.Group();
@@ -481,7 +484,10 @@ class Game {
   }
   endGame() {
     this.updateState(this.STATES.ENDED);
-    if (this.highScore === undefined || this.blocks.length - 2 > this.highScore) {
+    if (
+      this.highScore === undefined ||
+      this.blocks.length - 2 > this.highScore
+    ) {
       // Jika pemain mendapatkan skor tertinggi baru
       this.highScore = this.blocks.length - 2;
       this.updateHighScore();
@@ -525,7 +531,8 @@ class Game {
       0
     );
 
-    const targetBackgroundColor = backgroundThresholds[closestThreshold].background;
+    const targetBackgroundColor =
+      backgroundThresholds[closestThreshold].background;
     const currentBackgroundColor = this.stage.container.style.background;
 
     if (targetBackgroundColor !== currentBackgroundColor) {
@@ -534,7 +541,9 @@ class Game {
         ease: Power1.easeInOut,
       });
     }
-    
+
+    this.resetScoreButton.style.color =
+      backgroundThresholds[closestThreshold].fontColor;
     this.scoreContainer.style.color =
       backgroundThresholds[closestThreshold].fontColor;
     this.scoreText.style.color =
@@ -549,4 +558,4 @@ class Game {
       backgroundThresholds[closestThreshold].fontColor;
   }
 }
-let game = new Game();
+let game = new Game();
