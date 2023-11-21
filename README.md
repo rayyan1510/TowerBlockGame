@@ -3,9 +3,11 @@
 Ini adalah tugas kelompok 3 yaitu tower block game 
 
 Nama anggota kelompok:
-1. Ikhsan Hafid Diansyah
-2. Lampson Pindahaman
-3. Mohammad Faris Fawwaz
-4. Muhammad Eri Rinaldy
-5. Muhammad Rayyan Imani
-6. Shaquil Fatzha Nasution
+1. DIMAS ARIYUDHA
+2. IKHSAN HAFID DIANSYAH
+3. LAMPSON PINDAHAMAN PURBA
+4. MOHAMMAD FARIS FAWWAZ
+5. MUHAMMAD ERI RINALDY
+6. MUHAMMAD RAYYAN IMANI
+7. RIKKY RIFALDO SIMANUNGKALI
+8. SHAQUIL FATHZA NASUTION
