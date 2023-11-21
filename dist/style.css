@@ -1,7 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Comfortaa");
-
-
-@import url('https://fonts.googleapis.com/css2?family=Nunito&family=Quicksand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap');
 
 html,
 body {
@@ -10,7 +7,7 @@ body {
   height: 100%;
   width: 100%;
   position: relative;
-  font-family: "Comfortaa", cursive;
+  font-family: 'Quicksand', sans-serif;
 }
 #tutorial-modal {
   background-color: #f1e1ffb8;
@@ -38,33 +35,35 @@ body {
 #tutorial-modal #content h1 {
   font-size: 40px;
   margin: -45vh 0 0 0;
+  font-weight: 600;
 }
 #tutorial-modal #content h2 {
   font-size: 24px;
   margin: 7vh 0 7vh 0;
+  font-weight: 600;
 }
 #tutorial-modal #content p {
   font-size: 18px;
   margin: 0 0 10px;
   text-align: center;
-}
-
-#tutorial-modal > #content > p {
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 300;
 }
 
 #tutorial-modal #tutorial-button {
   transition: all 0.5s ease-in-out;
   transform: translatey(-50px);
   border: 3px solid #333344;
-  border-radius: 10px;
-  font-family: "Comfortaa", cursive;
+  border-radius: 12px;
   margin: 75vh 0 0 0;
   padding: 10px 20px;
   background-color: transparent;
   color: #333344;
   font-size: 24px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
 }
+
 #tutorial-modal #tutorial-button:hover {
   transform: translateY(-60px);
   box-shadow: rgba(51, 51, 68, 0.223) 0px 5px, #654a7728 0px 10px, #70647717 0px 15px;
@@ -82,6 +81,7 @@ body {
   transition: transform 0.5s ease;
   color: #333344;
   transform: translatey(-200px) scale(1);
+  font-weight: 500;
 }
 #container #game {
   position: absolute;
@@ -111,6 +111,7 @@ body {
   margin: 0;
   padding: 0;
   font-size: 40px;
+  font-weight: 600;
 }
 #container .game-ready {
   position: absolute;
@@ -149,13 +150,16 @@ body {
   font-size: 22px;
   position: absolute;
   left: 85%;
+  font-weight: 600;
+  margin-right: 50px;
 }
 #container #reset-high-score {
   transition: opacity 0.5s ease, transform 0.5s ease;
   transform: translatey(-50px);
   background-color: transparent;
   border: none;
-  font-family: "Comfortaa", cursive;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
   color: #333344;
   font-size: 22px;
   position: absolute;
@@ -165,17 +169,6 @@ body {
 #container #reset-high-score:hover {
   transform: translateY(-55px);
 }
-/* #container #reset-high-score {
-  transition: all 0.3s ease-in-out;
-  transform: translatey(-50px);
-  background-color: transparent;
-  border: none;
-  font-family: "Comfortaa", cursive;
-  color: #333344;
-  font-size: 22px;
-  position: absolute;
-  right: 85%;
-} */
 
 #container #instructions {
   position: absolute;
@@ -185,6 +178,8 @@ body {
   text-align: center;
   transition: opacity 0.5s ease, transform 0.5s ease;
   opacity: 0;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 300;
 }
 #container #instructions.hide {
   opacity: 0 !important;
@@ -205,4 +200,42 @@ body {
 }
 #container.ended .game-over p {
   transition-delay: 0.3s;
+}
+
+/* Media query untuk layar hp */
+@media only screen and (max-width: 767px) {
+  html,
+  body {
+    font-size: 14px;
+  }
+
+  #tutorial-modal #content h1 {
+    font-size: 30px;
+  }
+
+  #tutorial-modal #content h2 {
+    font-size: 18px;
+  }
+
+  #tutorial-modal #content p {
+    font-size: 14px;
+  }
+
+  #tutorial-modal #tutorial-button {
+    font-size: 14px;
+  }
+
+
+  #container #high-score-container{
+    font-size: 12px;
+    margin-right: 50px;
+  }
+
+
+  #container #reset-high-score {
+    font-size: 12px;
+    margin-left: 50px;
+  }
+
+  /* Tambahkan penyesuaian ukuran font untuk elemen lain jika diperlukan */
 }
