@@ -106,6 +106,7 @@ body {
   opacity: 0;
   transform: translatey(-50px);
   color: #333344;
+  text-align: center;
 }
 #container .game-over h2 {
   margin: 0;
