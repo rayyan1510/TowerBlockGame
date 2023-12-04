@@ -10,43 +10,37 @@ document.getElementById("start-tutor").addEventListener("click", function () {
 });
 
 // Set event listener to close tutorial modal
-document
-  .getElementById("tutorial-modal")
-  .addEventListener("click", function (event) {
-    if (event.target === this || event.target.closest("#tutorial-modal")) {
-      this.style.display = "none";
-    }
-  });
+document.getElementById("tutorial-modal").addEventListener("click", function (event) {
+  if (event.target === this || event.target.closest("#tutorial-modal")) {
+    this.style.display = "none";
+  }
+});
 
 // Set event listener for button in tutorial
-document
-  .getElementById("tutorial-button")
-  .addEventListener("click", function () {
-    document.getElementById("tutorial-modal").style.display = "none";
-  });
+document.getElementById("tutorial-button").addEventListener("click", function () {
+  document.getElementById("tutorial-modal").style.display = "none";
+});
 
 document.getElementById("start-button").addEventListener("click", function () {
   document.getElementById("tutorial-modal").style.display = "flex";
 });
 
-document
-  .getElementById("tutorial-button")
-  .addEventListener("click", function () {
-    document.getElementById("tutorial-modal").style.display = "none";
-  });
+document.getElementById("tutorial-button").addEventListener("click", function () {
+  document.getElementById("tutorial-modal").style.display = "none";
+});
 
-document
-  .getElementById("reset-high-score")
-  .addEventListener("click", function () {
-    game.resetHighScore();
-  });
+document.getElementById("reset-high-score").addEventListener("click", function () {
+  game.resetHighScore();
+});
 
-function showGameOver() {
+function ShowResetScore() {
   document.getElementById("container").classList.add("ended");
+  document.getElementById("reset-high-score").style.display = "block";
 }
 
-function hideGameOver() {
+function hideResetScore() {
   document.getElementById("container").classList.remove("ended");
+  document.getElementById("reset-high-score").style.display = "none";
 }
 
 class Stage {
@@ -310,6 +304,11 @@ class Game {
     this.scoreText = document.getElementById("high-score-container");
     this.highScoreContainer = document.getElementById("high-score");
     this.resetScoreButton = document.getElementById("reset-high-score");
+    this.placeSound = new Audio("./dist/sfx/blockstacking.mp3")
+    // this.victorySound = new Audio(".dist/sfx/super-mario-coin-sound.mp3");
+    this.defeatSound = new Audio("./dist/sfx/game-over.mp3");
+    this.isVictorySoundPlayed = false;
+    this.isDefeatSoundPlayed = false;
     this.loadHighScore();
     this.scoreContainer.innerHTML = "0";
     this.newBlocks = new THREE.Group();
@@ -358,10 +357,23 @@ class Game {
     // Memperbarui tampilan high score
     this.highScoreContainer.innerHTML = this.highScore;
   }
+  /* end high score logic */
+
+  /* sfx block di letakan */
+  playPlaceSound() {
+    this.placeSound.currentTime = 0;
+    this.placeSound.play();
+  }
+
+  /* sfx game over  */
+  playGameOverSound() {
+    this.defeatSound.currentTime = 0;
+    this.defeatSound.play();
+  }
 
   updateState(newState) {
     for (let key in this.STATES)
-      this.mainContainer.classList.remove(this.STATES[key]);
+    this.mainContainer.classList.remove(this.STATES[key]);
     this.mainContainer.classList.add(newState);
     this.state = newState;
   }
@@ -383,6 +395,7 @@ class Game {
       this.scoreContainer.innerHTML = "0";
       this.updateState(this.STATES.PLAYING);
       this.addBlock();
+      hideResetScore(); // fungsi untuk menghiden btn reset Highscore
     }
   }
 
@@ -427,12 +440,17 @@ class Game {
     }, cameraMoveSpeed * 1000);
     this.score = 0; // Initialize score
     this.updateBackground();
+    hideResetScore(); // untuk menghide reset highschore
   }
+  /* function untuk meletakan blok */
   placeBlock() {
     let currentBlock = this.blocks[this.blocks.length - 1];
     let newBlocks = currentBlock.place();
     this.newBlocks.remove(currentBlock.mesh);
-    if (newBlocks.placed) this.placedBlocks.add(newBlocks.placed);
+    if (newBlocks.placed) {
+      this.placedBlocks.add(newBlocks.placed)
+      this.playPlaceSound();
+    };
     if (newBlocks.chopped) {
       this.choppedBlocks.add(newBlocks.chopped);
       let positionParams = {
@@ -466,10 +484,12 @@ class Game {
       TweenLite.to(newBlocks.chopped.position, 1, positionParams);
       TweenLite.to(newBlocks.chopped.rotation, 1, rotationParams);
     }
+    
     this.score++;
     this.updateBackground();
     this.addBlock();
   }
+
   addBlock() {
     let lastBlock = this.blocks[this.blocks.length - 1];
     if (lastBlock && lastBlock.state == lastBlock.STATES.MISSED) {
@@ -493,6 +513,8 @@ class Game {
       this.updateHighScore();
       this.saveHighScore(); // Simpan skor tertinggi
     }
+    this.playGameOverSound();
+    ShowResetScore();
   }
   tick() {
     this.blocks[this.blocks.length - 1].tick();
